@@ -35,6 +35,9 @@
             });
         }
 
+        // Enable JSONP if service doesn't support CORS
+        OData.defaultHttpClient.enableJsonpCallback = !config.oDataURI().cors;
+
         return createEntityMap();
         
     }
@@ -51,6 +54,7 @@
         .then(function (context) {
             var entityMap = [];
             myApp.ctx[oDataURI.id] = context;
+
 
             //context.onReady({
             //    error: function (exception) {
