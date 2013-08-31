@@ -4,34 +4,44 @@
         'durandal': '../lib/durandal/js',
         'plugins': '../lib/durandal/js/plugins',
         'transitions': '../lib/durandal/js/transitions',
-        'knockout': [
-            '//cdnjs.cloudflare.com/ajax/libs/knockout/2.3.0/knockout-min',
-            '../lib/knockout/knockout-2.3.0'
-        ],
-        'jquery': [
-            '//ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min',
-            '../lib/jquery/jquery-1.9.1.min'
-        ]
+        'knockout': '../lib/knockout/knockout-2.3.0',
+        'bootstrap': '../lib/bootstrap/js/bootstrap'
+    },
+    shim: {
+        'bootstrap': {
+            deps: ['jquery'],
+            exports: 'jQuery'
+        }
     }
 });
 
-define(['durandal/system', 'durandal/app', 'durandal/viewLocator'], function( system, app, viewLocator ) {
+define('jquery', function () { return jQuery; });
+
+define(['durandal/system', 'durandal/app', 'durandal/viewLocator', 'config'], function (system, app, viewLocator, config) {
+
+    //var oProviderConfig = {
+    //    name: 'oData',
+    //    oDataServiceHost: '/examples/Northwind.svc'
+    //};
+
+ 
+
     //>>excludeStart("build", true);
     system.debug(true);
     //>>excludeEnd("build");
 
-    app.title = 'Durandal Samples';
+    app.title = 'DJ OData Entity browser';
 
     //specify which plugins to install and their configuration
     app.configurePlugins({
-        router: true,
-        dialog: true,
-        widget: {
-            kinds: ['expander']
-        }
+        router: true
+        //dialog: true,
+        //widget: {
+        //    kinds: ['expander']
+        //}
     });
 
-    app.start().then(function() {
+    app.start().then(function () {
         //Replace 'viewmodels' in the moduleId with 'views' to locate the view.
         //Look for partial views in a 'views' folder in the root.
         viewLocator.useConvention();
