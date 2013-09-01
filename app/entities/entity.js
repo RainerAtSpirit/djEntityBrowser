@@ -1,4 +1,4 @@
-﻿define(['durandal/system', 'knockout', 'services/fn', 'config'], function (system, ko, fn, config) {
+﻿define(['durandal/system', 'knockout', 'services/fn', 'global'], function (system, ko, fn, global) {
 
    
 
@@ -7,8 +7,8 @@
     };
 
     ctor.prototype.activate = function (entityName, related, relatedId, params) {
-        var oDataURI = config.oDataURI();
-        var context = myApp.ctx[oDataURI.id];
+        var oDataURI = global.config.oDataURI();
+        var context = global.ctx[oDataURI.id];
         var items = [];
         var self = this;
         var query = {};

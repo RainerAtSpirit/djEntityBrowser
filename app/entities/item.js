@@ -1,4 +1,4 @@
-﻿define(['knockout', 'services/fn', 'config'], function (ko, fn, config) {
+﻿define(['knockout', 'services/fn', 'global'], function (ko, fn, global) {
 
     
     var ctor = function () {
@@ -6,8 +6,8 @@
     };
 
     ctor.prototype.activate = function (entityName, entityId, params) {
-        var oDataURI = config.oDataURI();
-        var context = myApp.ctx[oDataURI.id];
+        var oDataURI = global.config.oDataURI();
+        var context = global.ctx[oDataURI.id];
         var items = [];
         var self = this;
         var query = {};

@@ -1,4 +1,4 @@
-﻿define(['durandal/system', 'plugins/router', 'knockout', 'config'], function (system, router, ko, config) {
+﻿define(['durandal/system', 'plugins/router', 'knockout', 'global'], function (system, router, ko, global) {
 
     var runOnce = true;
     var entities = ko.observableArray([]);
@@ -30,30 +30,30 @@
     function activate() {
         if (runOnce) {
             runOnce = false;
-            config.oDataURI.subscribe(function (value) {
+            global.config.oDataURI.subscribe(function (value) {
                 createEntityMap();
             });
         }
 
         // Enable JSONP if service doesn't support CORS
-        OData.defaultHttpClient.enableJsonpCallback = !config.oDataURI().cors;
+        OData.defaultHttpClient.enableJsonpCallback = !global.config.oDataURI().cors;
 
         return createEntityMap();
         
     }
     
     function createEntityMap() {
-        var oDataURI = config.oDataURI();
+        var oDataURI = global.config.oDataURI();
 
-        if (myApp.ctx[oDataURI.id]) {
-            entities(myApp.entityMaps[oDataURI.id]);
+        if (global.ctx[oDataURI.id]) {
+            entities(global.entityMaps[oDataURI.id]);
             return;
         }
 
         return $data.initService(oDataURI.url)
         .then(function (context) {
             var entityMap = [];
-            myApp.ctx[oDataURI.id] = context;
+            global.ctx[oDataURI.id] = context;
 
 
             //context.onReady({
@@ -62,7 +62,7 @@
             //    }
             //});
 
-            myApp.ctx[oDataURI.id].forEachEntitySet(function (entity) {
+            global.ctx[oDataURI.id].forEachEntitySet(function (entity) {
                 entityMap.push({
                     hash: '#entities/browse/' + encodeURIComponent(entity.name),
                     title: entity.name,
@@ -73,7 +73,7 @@
                 });
             });
 
-            myApp.entityMaps[oDataURI.id] = entityMap;
+            global.entityMaps[oDataURI.id] = entityMap;
             entities(entityMap);
         });
     }

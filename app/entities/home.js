@@ -1,7 +1,8 @@
-﻿define(['config'],function (config) {
+﻿define(['global'],function (global) {
 
     
     return {
-        config: config
+        oDataURI: global.config.oDataURI,
+        oDataUris: global.config.oDataUris
     };
 });

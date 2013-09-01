@@ -1,7 +1,7 @@
-﻿define(['config'], function (config) {
+﻿define(['global'], function (global) {
     function getTypeByParam(entityName) {
-        var ctx = myApp.ctx[config.oDataURI().id];
-        if (!ctx) { return false };
+        var ctx = global.ctx[global.config.oDataURI().id];
+        if (!ctx) { return false }
         var obj = {};
         var result = $.grep(ctx._storageModel, function (n, i) {
             return n.ItemName === entityName || n.LogicalTypeName === entityName;
@@ -12,10 +12,11 @@
         });
 
         return obj;
-    };
+    }
+
     function getValue(column, self) {
-        var ctx = myApp.ctx[config.oDataURI().id];
-        if (!ctx) { return false };
+        var ctx = global.ctx[global.config.oDataURI().id];
+        if (!ctx) { return false }
         var value = this[column.name] || '';
 
         if (column.inverseProperty) {
@@ -37,7 +38,7 @@
             }
         }
         return value;
-    };
+    }
 
     return {
         getTypeByParam: getTypeByParam,
