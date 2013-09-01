@@ -1,20 +1,24 @@
-﻿define(['knockout', 'services/fn', 'global'], function (ko, fn, global) {
+﻿define(['knockout', 'services/fn', 'global'], function( ko, fn, global ) {
 
-    
-    var ctor = function () {
+    var ctor = function() {
         this.items = ko.observableArray([]);
     };
 
-    ctor.prototype.activate = function (entityName, entityId, params) {
+    ctor.prototype.canActivate = function( entityName, entityId, params ) {
+
+        if ( !entityName && !entityId ) {
+            alert('missing or wrong entityName or entity');
+            return false;
+        }
+        return true;
+    };
+
+    ctor.prototype.activate = function( entityName, entityId, params ) {
         var oDataURI = global.config.oDataURI();
         var context = global.ctx[oDataURI.id];
         var items = [];
         var self = this;
         var query = {};
-
-        if (!entityName || !entityId) {
-            alert('missing or wrong entityName or entity');
-        }
 
         this.id = entityId;
 
@@ -31,21 +35,20 @@
         this.params = params || {};
         this._expression = "it." + this.keyName + " == this.id";
 
-        
         $.extend(true, query, this.ds);
 
         // Retrieve a single item.
         query.filter(self._expression, { id: self.id })
-            .forEach(function (item) {
+            .forEach(function( item ) {
                 items.push($.extend(item, {
-                    _getValue: fn.getValue 
+                    _getValue: fn.getValue
                 }));
             })
-            .then(function () {
+            .then(function() {
                 self.items(items);
             });
     };
-    
+
     return ctor;
-  
+
 });

@@ -4,6 +4,19 @@
 
     var ctor = function () {
         this.items = ko.observableArray([]);
+        this.take = ko.observable(10);
+    };
+
+    ctor.prototype.canActivate = function(entityName, related, relatedId, params) {
+        var oDataURI = global.config.oDataURI();
+        var context = global.ctx[oDataURI.id];
+
+        if (!entityName || !context[entityName]) {
+            alert('missing or wrong entityName');
+            return false;
+        }
+
+        return true;
     };
 
     ctor.prototype.activate = function (entityName, related, relatedId, params) {
@@ -13,10 +26,7 @@
         var self = this;
         var query = {};
 
-        if (!entityName || !context[entityName]) {
-            alert('missing or wrong entityName');
-        }
-        
+
         this.type = fn.getTypeByParam(entityName);
         this.ItemName = this.type.ItemName;
         this.ds = context[this.ItemName];
@@ -41,7 +51,7 @@
         }
 
         // Return the promise to ensure that composition waits
-        return query.take(10)
+        return query.take(this.take())
         .forEach(function (item) {
             items.push($.extend(item, {
                 _getValue: fn.getValue,

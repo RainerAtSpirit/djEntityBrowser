@@ -1,10 +1,9 @@
 ﻿<div>
-    <h2 data-bind="text: name"></h2>
+    <h2 data-bind="text: ItemName"></h2>
     <table class="table table-striped table-bordered table-hover">
         <colgroup data-bind="foreach: properties">
             <col />
         </colgroup>
-
         <thead>
             <tr>
                 <!-- ko foreach: properties -->
@@ -15,7 +14,6 @@
                 <th>&nbsp;</th>
             </tr>
         </thead>
-
         <tbody class="items" data-bind="foreach: items">
             <tr data-bind="css: { odd: $index() % 2 === 0 }">
                 <!-- ko foreach: $parent.properties -->
@@ -26,7 +24,5 @@
                 </td>
             </tr>
         </tbody>
-
-
     </table>
 </div>
