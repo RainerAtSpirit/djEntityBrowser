@@ -26,7 +26,7 @@
                 value = '<a href="#entities/browse/' + column.name + '/' + self.keyName + '/' + this[self.keyName] + '">browse</a>';
             }
             else {
-                var rModel = self.ds.entityContext._storageModel[association.ToType.fullName];
+                var rModel = self.context.entityContext._storageModel[association.ToType.fullName];
                 var rKeyName = ctx[rModel.ItemName][rModel.LogicalTypeName].memberDefinitions.getKeyProperties()[0].name;
                 if (this[rKeyName]) {
                     value = '<a href="#entities/item/' + rModel.LogicalTypeName + '/' + this[rKeyName] + '">item</a>';

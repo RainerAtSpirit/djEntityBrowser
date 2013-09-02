@@ -1,6 +1,5 @@
 ﻿define(['durandal/system', 'knockout', 'services/fn', 'services/ds', 'global'], function( system, ko, fn, DataSource, global ) {
     var ctor = function() {
-        this.items = ko.observableArray([])
     };
 
     ctor.prototype.canActivate = function( entityName, related, relatedId, params ) {
@@ -19,16 +18,17 @@
         var oDataURI = global.config.oDataURI();
         var context = global.ctx[oDataURI.id];
 
-        //Store one shared data source per entity per context
-        global.TEST = global.TEST || {};
-        global.TEST[oDataURI.id] = global.TEST[oDataURI.id] || {};
-        this.ds = global.TEST[oDataURI.id][this.ItemName] = new DataSource(context, entityName, {
-            take: 20
+        this.ds = new DataSource(context, entityName, {
+            take: 10,
+            //todo: move to paging module
+            withInlineCount: true
         });
 
-        //this.params = params || {};
+        global.TEST = global.TEST ||  {};
+        global.TEST[entityName] = this.ds;
 
-        // Apply relationship filter
+        // Apply filter if needed and return the promise
+        //Todo Filter expression as binary search tree
         if ( related && relatedId ) {
             var expression = "it." + related + " == this.id";
             var options = { id: relatedId };
@@ -37,8 +37,6 @@
         else {
             return this.ds.query();
         }
-
-
     };
 
     ctor.prototype.attached = function() {

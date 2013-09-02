@@ -1,7 +1,6 @@
-﻿define(['knockout', 'services/fn', 'global'], function( ko, fn, global ) {
+﻿define(['durandal/system', 'knockout', 'services/fn', 'global', 'services/ds'], function( system, ko, fn, global, DataSource ) {
 
     var ctor = function() {
-        this.items = ko.observableArray([]);
     };
 
     ctor.prototype.canActivate = function( entityName, entityId, params ) {
@@ -16,37 +15,19 @@
     ctor.prototype.activate = function( entityName, entityId, params ) {
         var oDataURI = global.config.oDataURI();
         var context = global.ctx[oDataURI.id];
-        var items = [];
-        var self = this;
-        var query = {};
 
-        this.id = entityId;
+        this.ds = new DataSource(context, entityName, {
+            take: 1
+        });
 
-        this.type = fn.getTypeByParam(entityName);
-        this.ItemName = this.type.ItemName;
-        this.ds = context[this.ItemName];
-        this.model = this.ds[this.type.LogicalTypeName];
+        //Todo: Binary search tree
+        var expression = "it." + this.ds.keyName + " === this.id";
+        var options = { id: entityId };
+        return this.ds.query(expression, options);
+    };
 
-        this.properties = this.model.memberDefinitions.getPublicMappedProperties();
-        this.assocations = this.ds.expression.storageModel.Associations;
-
-        //Todo: Check if multiple keys are allowed in Odata?
-        this.keyName = this.model.memberDefinitions.getKeyProperties()[0].name;
-        this.params = params || {};
-        this._expression = "it." + this.keyName + " == this.id";
-
-        $.extend(true, query, this.ds);
-
-        // Retrieve a single item.
-        query.filter(self._expression, { id: self.id })
-            .forEach(function( item ) {
-                items.push($.extend(item, {
-                    _getValue: fn.getValue
-                }));
-            })
-            .then(function() {
-                self.items(items);
-            });
+    ctor.prototype.attached = function() {
+        system.log('this.ds.items', this.ds.items());
     };
 
     return ctor;
