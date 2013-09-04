@@ -1,14 +1,14 @@
 # djEntityBrowser
->  **2013/08/31**: Work in progress. Use on your own risk
+>  **2013/09/04**: Work in progress. Use on your own risk
 
-What happens if you combine [Durandal] a client side SPA frameworks with [JayData] a unified data access library
- for JavaScript?
+What happens if [Spirit] starts mixing [Durandal] a client side SPA frameworks with [JayData] a unified
+data access library for JavaScript?
 
 ##Great things `:)`
 
 ### What is it?
 
-POC of an Entity browser that supports browsing local or remote OData services.
+OData Entity browser that supports exploring local or remote OData services.
 
 ### Basic Usage
 
@@ -19,6 +19,6 @@ POC of an Entity browser that supports browsing local or remote OData services.
 ... todo
 
 
-
+[Spirit]:http://www.spirit.de
 [Durandal]:http://durandaljs.com/
 [JayData]:http://jaydata.org/
