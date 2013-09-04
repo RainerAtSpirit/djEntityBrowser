@@ -1,7 +1,7 @@
 # djEntityBrowser
 >  **2013/09/04**: Work in progress. Use on your own risk
 
-What happens if [Spirit] starts mixing [Durandal] a client side SPA frameworks with [JayData] a unified
+What happens if you start mixing [Durandal] a client side SPA framework with [JayData] a unified
 data access library for JavaScript?
 
 ##Great things `:)`
