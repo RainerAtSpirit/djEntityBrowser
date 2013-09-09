@@ -1,0 +1,247 @@
+﻿/* ---------------- widget styles ------------------------*/
+.widgetAttachments ul.unstyled li{
+    padding: 1px;
+}
+
+.widgetAttachments #plupload{
+    margin-bottom: 16px;
+}
+
+
+/* ---------------- item form styles -------------------- */
+
+.draggable, .sortable {
+    cursor: move;
+}
+
+
+.modal-body form {
+    padding-right: 30px;
+}
+
+.select2, .select2-container {
+    margin-left: 0;
+}
+
+
+.modal-body {
+  overflow-x: hidden;
+}
+
+
+/* ---------------- filter styles -------------------- */
+
+.filterGroup, .filter{
+  list-style-type: none;
+}
+
+.filterGroup{
+  border: 1px solid #C0DAE5;
+  background-color: #D9EDF7;
+  padding: 8px;
+  margin-bottom: 8px;
+  margin-left: 0;
+}
+
+.filterGroup .filterGroup {
+  background-color: #DFF0F8;
+}
+
+.filterGroup .filterGroup .filterGroup {
+  background-color: #ECF6FB;
+}
+
+.filterGroup .filterGroup .filterGroup .filterGroup {
+  background-color: #FDE1DE;
+}
+
+.filter{
+  margin: 0 0 8px 10px;
+  padding: 0 0 0 10px;
+}
+
+.filterGroup select, #applicationHost .filterGroup input[type="text"] {
+  margin-bottom: 5px;
+}
+
+.filterGroup a, .filterGroup a:visited {
+  font-family: proxima-nova, "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /*color: #676767;*/
+}
+
+.filterControls{
+  text-align: right;
+}
+
+li .filterGroup{
+  margin-top: 8px;
+}
+
+/* ---------------- grid styles -------------------- */
+
+.table .odd {
+  background-color: #F9F9F9;
+}
+
+.table th.sortable{
+  cursor: pointer;
+}
+
+.table > tfoot > tr > td {
+  padding: 0;
+}
+
+table.footer{
+  width: 100%;
+}
+
+
+table.footer td{
+  width: 33%;
+  vertical-align: middle;
+  border-left: none;
+}
+
+table.footer .pageSize {
+  padding-left: 8px;
+}
+
+table.footer .pageSize .help-inline{
+  padding-top: 7px;
+}
+
+table.footer .pageSize > select{
+  margin-left: 6px;
+  margin-bottom: 0;
+}
+
+table.footer .pageSize div{
+  border-right: 1px solid #DDDDDD;
+}
+
+table.footer .pageInfo div{
+  margin-left: 6px;
+  border-left: 1px solid #DDDDDD;
+  font-size: 16px;
+  text-align: center;
+  width: 64px;
+}
+
+.pageInfo a, .pageInfo a:visited{
+  color: #676767;
+}
+
+
+table.footer .pager{
+  text-align: center;
+}
+
+table.footer .pageInfo{
+  
+  text-align: right;
+  padding-right: 8px;
+}
+
+table.footer > tbody > tr > td.pageInfo,
+table.footer > tbody > tr > td.pager,
+table.footer > tbody > tr > td.pageSize
+  {
+    background-color: transparent;
+  }
+
+
+.pager > a {
+  padding: 0 4px;
+  color: #0500C8;
+}
+
+.pager > a.disabled {
+  color: #5D5D6B;
+  cursor: default;
+}
+
+
+.show-grid {
+  margin-top: 2px;
+  margin-bottom: 4px;
+}
+.show-grid [class*="span"] {
+  padding: 0 4px 4px 4px;
+  background-color: #E6EFF2;
+  -webkit-border-radius: 3px;
+     -moz-border-radius: 3px;
+          border-radius: 3px;
+  min-height: 30px;
+  border: 1px solid #C0DAE5;
+}
+
+.show-grid [class*="span"]:hover {
+  background-color: #C0DAE5;
+  cursor: pointer;
+}
+
+/* ---------------- splash  styles -------------------- */
+.ajax-loader {
+    background-image: url('images/ajax-loader.gif');
+}
+
+/*
+.splash {
+    text-align: center;
+    margin: 10% 0 0 0;
+}
+
+.splash .message {
+    font-size: 5em;
+    line-height: 1.5em;
+    -webkit-text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
+    text-shadow: rgba(0, 0, 0, 0.5) 0px 0px 15px;
+    text-transform: uppercase;
+}
+
+.splash .icon-spinner {
+    text-align: center;
+    display: inline-block;
+    font-size: 5em;
+    margin-top: 50px;
+}*/
+
+/* ---------------- Todo: check host  styles -------------------- */
+
+.page-host {
+    position: relative;
+    top: 40px;
+}
+
+.navbar-fixed-top .navbar-inner {
+    padding-left: 1em;
+    padding-right: 1em;
+}
+
+/*.navbar {
+    margin-bottom: 0;
+}*/
+
+.navbar-fixed-top .icon-home {
+    font-size: 18px
+}
+
+.loader {
+    margin: 6px 8px 4px 8px;
+    visibility: hidden;
+}
+
+.loader.active {
+    visibility: visible;
+}
+
+
+@media (max-width: 979px) {
+    .page-host {
+        top: 0;
+    }
+
+    .navbar-fixed-top {
+        margin-bottom: 0;
+    }
+}
