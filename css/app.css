@@ -79,6 +79,15 @@ li .filterGroup{
 
 /* ---------------- grid styles -------------------- */
 
+.djGrid td input {
+    margin-bottom: 0;
+}
+
+
+.grid-controls{
+    padding: 4px 0;
+}
+
 .table .odd {
   background-color: #F9F9F9;
 }
