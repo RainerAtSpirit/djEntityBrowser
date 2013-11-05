@@ -1,0 +1,25 @@
+﻿<li>
+  <ul class="filterGroup">
+    <li class="filterGroupParams controls-row">
+      <select class="span2" name="logic"
+              data-bind="options: $parents[$parents.length - 3].lookups.logic, value: logic"></select>
+      <span class="span10">
+        <a class="btn btn-small" title=" add filter" data-bind="click: addFilter">
+          <i class="icon-plus"></i>
+        </a>
+        <a class="btn btn-small" title="add filter group" data-bind="click: addGroup">
+          <i class="icon-sitemap"></i></a>
+        <a class="btn btn-small" title="remove group" data-bind="click: remove">
+          <i class="icon-remove"></i>
+        </a>
+      </span>
+    </li>
+    <li>
+      <ul class="filter" data-bind="foreach: filters">
+        <!-- Important define grand-parent relative via $parents[$parents.length - 3] not absolute via $parents[1] -->
+        <!-- ko compose: {view: $parents[$parents.length - 3].viewTemplate($data)} -->
+        <!--/ko-->
+      </ul>
+    </li>
+  </ul>
+</li>

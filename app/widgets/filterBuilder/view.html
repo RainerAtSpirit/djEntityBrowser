@@ -1,0 +1,31 @@
+﻿<div class="alert">
+    <button type="button" title="close" class="close" data-dismiss="alert" data-bind="click: close">&times;</button>
+    <ul class="alert alert-info filterGroup">
+        <li class="filterGroupParams controls-row">
+            <select class="span2" name="logic" data-bind="options: lookups.logic, value: filters.logic"></select>
+            <span class="span10">
+                <a class="btn" title=" add filter" data-bind="click: filters.addFilter">
+                    <i class="icon-plus"></i>add filter
+                </a>
+                <a class="btn" title="add filter group" data-bind="click: filters.addGroup">
+                    <i class="icon-sitemap"></i>add group</a>
+            </span>
+        </li>
+        <li>
+            <ul class="filter" data-bind="foreach: $data.filters.filters">
+                <!-- ko compose: {view: $parent.viewTemplate($data)} -->
+                <!--/ko-->
+            </ul>
+        </li>
+        <li class="filterControls">
+            <div class="btn-group">
+                <a class="btn btn-primary" title="apply filter" data-bind="click: applyFilter">
+                    <i class="icon-magic"></i> apply filter
+                </a>
+                <a class="btn btn-inverse" title="remove filter" data-bind="click: removeFilter">
+                    <i class="icon-refresh"></i> remove filter
+                </a>
+            </div>
+        </li>
+    </ul>
+</div>

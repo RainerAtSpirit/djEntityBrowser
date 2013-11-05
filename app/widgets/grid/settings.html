@@ -1,0 +1,49 @@
+<div class="messageBox">
+    <div class="modal-header draggable" >
+        <button type="button" class="close" title="Close" data-bind="click: close">&times;</button>
+        <h5>Column settings</h5>
+    </div>
+    <div class="modal-body columnSettings">
+        <span>Drag to sort</span>
+        <table class="table table-bordered .table-hover">
+            <thead>
+                <tr>
+                    <th>Field</th>
+                    <th>Title</th>
+                   <!-- <th>Format</th>-->
+                    <th>Show</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody data-bind="sortable: $data.columns">
+                <tr class="item info draggable">
+                    <td>
+                        <select class="span2"
+                                data-bind="options: $root.fields, optionsText: 'name', optionsValue: 'name', value: _field"></select>
+                    </td>
+                    <td>
+                        <input class="span2 title" data-bind="value: title" />
+                    </td>
+                 <!--   <td>
+                        <input class="span1" data-bind="value: format" />
+                    </td>-->
+                    <td>
+                        <input type="checkbox" data-bind="checked: showColumn" />
+                    </td>
+                    <td>
+                        <button class="btn btn-small" title="remove" data-bind="click: $root.removeColumn">
+                            <i class="icon-remove"></i>
+                        </button>
+                    </td>
+
+                </tr>
+            </tbody>
+        </table>
+
+        <button class="btn btn-small btn-success" data-bind="click: addColumn">
+            <i class="icon-check"></i>Add column</button>
+    </div>
+    <div class="modal-footer">
+        <button class="btn btn" type="button" data-bind="click: close">Close</button>
+    </div>
+</div>

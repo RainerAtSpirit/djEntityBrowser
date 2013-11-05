@@ -43,16 +43,24 @@
     </div>
 </div>
 
+<!-- Durandal core dependencies -->
 <script src="lib/jquery/jquery-1.9.1.js"></script>
-<script src="lib/jquery/jquery-ui-1.10.3.custom.js"></script>
 <script src="lib/knockout/knockout-2.3.0.debug.js"></script>
+
+<!-- Draggable/Sortable support -->
+<script src="lib/jquery/jquery-ui-1.10.3.custom.js"></script>
 <script src="lib/knockout/knockout-sortable.js"></script>
+
+<!-- OData data access -->
 <script src="lib/jaydata/datajs-1.1.1.js"></script>
 <script src="lib/jaydata/jaydata.js"></script>
 <script src="lib/jaydata/jaydataproviders/oDataProvider.js"></script>
 <script src="lib/jaydata/jaydatamodules/knockout.min.js"></script>
 
+<!-- the app -->
+<script src="lib/require/require.js" data-main="app/main"></script>
+
 <!-- optimized Durandal build -->
-<script src="app/main-built.js"></script>
+<!--<script src="app/main-built.js"></script>-->
 </body>
 </html>

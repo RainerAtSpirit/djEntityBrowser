@@ -1,0 +1,16 @@
+﻿<li class="controls-row">
+      <!-- Important define grand-parent relative via $parents[$parents.length - 3] not absolute via $parents[1] -->
+
+      <select class="span3" data-bind="options:  $parents[$parents.length - 3].lookups.fields,
+                                         optionsText: 'name',
+                                         optionsValue: 'name', value: field"></select>
+  <select class="span3" data-bind="options:  $parents[$parents.length - 3].lookups.opmap,
+                                     optionsText: 'name',
+                                     optionsValue: 'value', value: operator"></select>
+  <input class="span3" type="text" data-bind="value: value" />
+  <span class="span3">
+    <a href="#" class="btn" title="remove expression" data-bind="click: remove">
+      <i class="icon-remove"></i>
+    </a>
+  </span>
+</li>

@@ -1,0 +1,89 @@
+<section>
+    <!-- ko if: $data._showFilter() -->
+
+    <!-- ko widget: {kind:'filterBuilder', ds : $data.ds, fields : $data.properties }  -->
+    <!-- /ko -->
+
+    <!-- /ko -->
+    <h2 data-part="header" data-bind="text: ds.ItemName"></h2>
+    <table class="table table-striped table-bordered table-hover">
+        <colgroup data-bind="foreach: showColumns">
+            <col/>
+        </colgroup>
+        <thead data-part="thead">
+        <tr>
+            <!-- ko foreach: showColumns -->
+            <th
+                data-bind="click: $parent.sortByHeader.bind($parent), css: { sortable: sortable }">
+                <span data-bind="text: title"></span>
+                <!-- ko if: sorted()-->
+                <!-- ko if: sortAsc()-->
+                <i class="icon-angle-up pull-right"></i>
+                <!-- /ko -->
+                <!-- ko if: !sortAsc()-->
+                <i class="icon-angle-down pull-right"></i>
+                <!-- /ko -->
+                <!-- /ko -->
+            </th>
+            <!-- /ko -->
+        </tr>
+        </thead>
+
+        <tbody class="items" data-bind="foreach: ds.items">
+        <tr data-bind="css: { odd: $index() % 2 === 0 }">
+            <!-- ko foreach: $parent.showColumns -->
+            <td data-bind="html: $data.getValue($root.ds, $data, $parent)"></td>
+            <!-- /ko -->
+            <!-- /ko -->
+        </tr>
+        </tbody>
+
+        <tfoot data-part="tfoot">
+        <tr>
+            <td data-bind="attr: { colspan: (showColumns().length + 1 )}">
+                <table class="footer">
+                    <tbody>
+                    <tr data-bind="with: ds">
+                        <td class="pageSize">
+                            <div class="pull-left">
+                                <span class="loader" data-bind="css: { active: isFetching }">
+                                  <i class="icon-spinner icon-2x icon-spin"></i>
+                                </span>
+                            </div>
+
+                            <select class="span3"
+                                    data-bind="value: take, options: [3, 5, 7, 10, 13, 17, 20, 50]"></select>
+                            <!--<input class="span1" data-bind="value: _pageSize"></input>-->
+                            <span class="help-inline">items</span>
+
+                        </td>
+                        <td class="pager">
+                            <a href="#"
+                               data-bind="css: { disabled: !hasPrevious() || isFetching() }, click: previous"><i
+                                class="icon-angle-left"></i>previous</a>
+                            <a href="#" data-bind="css: { disabled: !hasNext() || isFetching() }, click: next">next <i
+                                class="icon-angle-right"></i></a>
+                        </td>
+                        <td class="pageInfo">
+                            <span data-bind="text: paging().from"></span>-
+                            <span data-bind="  text: paging().to"></span> of
+                            <span data-bind="  text: paging().totalCount"></span>
+
+                            <div class="pull-right">
+                                <a href="#" title="Grid filter" data-bind="click: $parent.toggleFilter.bind($parent)">
+                                    <i class="icon-filter"></i>
+                                </a>
+                                <a href="#" title="Grid settings"
+                                   data-bind="click: $parent.openSettingsDialog.bind($parent)">
+                                    <i class="icon-cog"></i>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </td>
+        </tr>
+        </tfoot>
+    </table>
+</section>
