@@ -28,8 +28,9 @@ define(function( require ) {
 
     function getValue ( ds, column, item ) {
         var cell = item,
-        ctx = global.ctx[global.config.oDataURI().id],
-        value, properties;
+            svcId = global.config.oDataURI().id,
+            ctx = global.ctx[svcId],
+            value, properties;
 
         if ( !ctx ) {
             return false;
@@ -44,11 +45,12 @@ define(function( require ) {
 
         // adding detail link to key fields
         if ( column.key || (column.properties && column.properties.key) ) {
-            value = format('<a type="button" class="" title="Detail view" href="#entities/item/{0}/{1}">' +
+            value = format('<a type="button" class="" title="Detail view" href="#entities/{3}/item/{0}/{1}">' +
                 '<i class="icon-expand-alt"></i> {2}</a>',
                 ds._type.LogicalTypeName,
                 ko.unwrap(cell[ds.keyName]),
-                ko.unwrap(cell[column.name])
+                ko.unwrap(cell[column.name]),
+                svcId
             );
         }
 
@@ -81,22 +83,24 @@ define(function( require ) {
                 rModel, rKeyName;
 
             if ( association && association.FromMultiplicity === '0..1' ) {
-                value = format('<a title="{0}" href="#entities/browse/{1}/{2}/{3}">{1}</a>',
+                value = format('<a title="{0}" href="#entities/{4}/browse/{1}/{2}/{3}">{1}</a>',
                     relation,
                     property.name,
                     association.From + '.' + ds.keyName,
-                    ko.unwrap(cell[ds.keyName])
+                    ko.unwrap(cell[ds.keyName]),
+                    svcId
                 );
             }
             else {
                 rModel = ds.context.entityContext._storageModel[association.ToType.fullName];
                 rKeyName = ctx[rModel.ItemName][rModel.LogicalTypeName].memberDefinitions.getKeyProperties()[0].name;
                 if ( cell[rKeyName] ) {
-                    value = format('<a title="{0}" href="#entities/item/{1}/{2}">{3}</a>',
+                    value = format('<a title="{0}" href="#entities/{4}/item/{1}/{2}">{3}</a>',
                         relation,
                         rModel.LogicalTypeName,
                         ko.unwrap(cell[rKeyName]),
-                        property.name
+                        property.name,
+                        svcId
                     );
                 }
                 else {

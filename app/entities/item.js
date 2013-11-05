@@ -10,7 +10,7 @@ define(function( require ) {
         $ = require('jquery'),
         system = require('durandal/system'),
         DataSource = require('services/ds'),
-        ctor, lifeCycle, instanceMethods, paging;
+        ctor, lifeCycle, instanceMethods;
 
     ctor = function() {
     };
