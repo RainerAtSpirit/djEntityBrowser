@@ -10,12 +10,12 @@ define(function( require ) {
         $ = require('jquery'),
         system = require('durandal/system'),
         DataSource = require('services/ds'),
-        ctor, lifecycle, instanceMethods, paging;
+        ctor, lifeCycle, instanceMethods, paging;
 
     ctor = function() {
     };
 
-    lifecycle = {
+    lifeCycle = {
         canActivate: function( entityName, entityId, params ) {
 
             if ( !entityName && !entityId ) {
@@ -44,7 +44,7 @@ define(function( require ) {
     };
 
     // Extend ctor.prototype with lifecylce and instanceMethods
-    $.extend(ctor.prototype, lifecycle, instanceMethods);
+    $.extend(ctor.prototype, lifeCycle, instanceMethods);
 
     return ctor;
 });

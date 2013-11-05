@@ -10,7 +10,6 @@ define(function( require ) {
         system = require('durandal/system'),
         ctor, instanceMethods, paging;
 
-
     ctor = function( ctx, entityName, options ) {
         this._sort = ko.observableArray();
         this._filter = ko.observable();
@@ -21,10 +20,8 @@ define(function( require ) {
         this.init(ctx, entityName, options);
     };
 
-
     instanceMethods = {
         sort: function( options ) {
-            var self = this;
 
             //Todo: Consider command pattern http://www.johnpapa.net/kolite1-1/
             if ( this.isFetching() ) {
@@ -81,9 +78,9 @@ define(function( require ) {
             });
         },
         query: function() {
-            var self = this;
-            var items = [];
-            var query = this.context;
+            var self = this,
+                items = [],
+                query = this.context;
 
             if ( this.withInlineCount() && query.entityContext.storageProvider.supportedSetOperations.withInlineCount ) {
                 // $.extend(true, query, this.context.withInlineCount());
@@ -152,9 +149,9 @@ define(function( require ) {
             }
 
             function createFieldExpression ( filter, result ) {
-                var field = "it." + filter.field;
-                var valueId = "value" + result.index;
-                var value = "this." + valueId;
+                var field = "it." + filter.field,
+                    valueId = "value" + result.index,
+                    value = "this." + valueId;
 
                 switch ( filter.operator ) {
                     case 'eq':
@@ -248,16 +245,6 @@ define(function( require ) {
                 });
             });
 
-            self.hasNext = ko.computed(function() {
-                //Todo:
-                return true;
-            });
-
-            self.hasPrevious = ko.computed(function() {
-                return (this.page() > 1);
-            }, this);
-
-            //todo: pager module?
             // Make sure to set up ko.computed after all observable have been defined
             self.hasPrevious = ko.computed(function() {
                 return (this.page() > 1);
@@ -298,7 +285,6 @@ define(function( require ) {
 
         }
     };
-
 
     paging = {
         next: function() {

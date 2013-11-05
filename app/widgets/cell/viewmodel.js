@@ -7,14 +7,13 @@ define(function( require ) {
     var fn = require('services/fn'),
         dialog = require('plugins/dialog'),
         $ = require('jquery'),
-        ko = require('knockout'),
         system = require('durandal/system'),
-        ctor, lifecyle, instanceMethods;
+        ctor, lifeCycle, instanceMethods;
 
     ctor = function() {
     };
 
-    lifecyle = {
+    lifeCycle = {
         activate: function( settings ) {
             this._settings = settings;
             this.ds = this._settings.ds;
@@ -27,7 +26,7 @@ define(function( require ) {
         getValue: fn.getValue
     };
 
-    $.extend(ctor.prototype, lifecyle, instanceMethods);
+    $.extend(ctor.prototype, lifeCycle, instanceMethods);
 
     return ctor;
 

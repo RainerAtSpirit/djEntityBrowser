@@ -9,7 +9,7 @@ define(function( require ) {
           system = require('durandal/system'),
           Settings = require('./settings'),
           Column = require('./column'),
-          ctor, instanceMethods, lifecyle;
+          ctor, instanceMethods, lifeCycle;
 
 
     ctor = function() {
@@ -22,7 +22,7 @@ define(function( require ) {
         }, this);
     };
 
-    lifecyle = {
+    lifeCycle = {
         activate: function( settings ) {
             this._settings = settings;
             this.ds = this._settings.ds;
@@ -41,14 +41,6 @@ define(function( require ) {
                         return obj.field;
                     });
                     self.ds.reset();
-                    /* var deltaPlus = _.difference(newViewFields, self.viewFields);
-                     var deltaMinus = _.difference(self.viewFields, newViewFields);
-
-                     // Update viewFields if required and refresh the view to fetch the new data
-                     if ( deltaPlus.length > 0 || deltaMinus.length > 0 ) {
-                     self.viewFields = newViewFields;
-                     self.refresh();
-                     }*/
 
                     system.log('SettingsDialog:closed', response);
                 });
@@ -81,54 +73,49 @@ define(function( require ) {
 
         },
         createColumns: function() {
-            var self = this;
-            var publicMappedProperties = self.properties;
-            var related = [];
+            var self = this,
+            publicMappedProperties = self.properties,
+            related = [],
+            newCol;
 
             this._columns = $.map(publicMappedProperties, function( properties, idx ) {
+                var config;
+
                 if ( properties.inverseProperty ) {
                     related.push(properties);
                     return;
                 }
                 // todo: ensure valid config object
-                var config = {
+                config = {
                     name: properties.name,
                     title: properties.name.toUpperCase(),
                     sortable: true
                 };
-                var newCol = new Column(config, properties);
-                return newCol;
 
+                return  new Column(config, properties);
             });
 
             if ( related.length ) {
-                var newCol = new Column({
+                newCol = new Column({
                     sortable: false,
                     title: 'Related',
                     name: 'Related'
                 }, {});
+
                 $.extend(newCol, {
                     related: true,
                     properties: related
                 });
+
                 self._columns.unshift(newCol);
 
-                /*self._columns.unshift({
-                 sortable: false,
-                 sorted: ko.observable(false),
-                 sortAsc: ko.observable(false),
-                 related: true,
-                 name: 'Related',
-                 title: 'Related',
-                 properties: related
-                 })*/
             }
 
             self.columns(self._columns);
         }
     };
 
-    $.extend(ctor.prototype, lifecyle, instanceMethods);
+    $.extend(ctor.prototype, lifeCycle, instanceMethods);
 
     return ctor;
 

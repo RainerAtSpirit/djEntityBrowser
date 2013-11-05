@@ -10,7 +10,7 @@ define(function( require ) {
         Column = require('./column'),
         ko = require('knockout'),
         $ = require('jquery'),
-        ctor, instanceMethods, lifecyle;
+        ctor, instanceMethods, lifeCycle;
 
     ctor = function( options ) {
         var self = this;
@@ -68,7 +68,7 @@ define(function( require ) {
         }
     };
 
-    lifecyle = {
+    lifeCycle = {
         attached: function( view ) {
             $(view).draggable(
                 { handle: ".draggable" }
@@ -76,7 +76,7 @@ define(function( require ) {
         }
     };
 
-    $.extend(ctor.prototype, lifecyle, instanceMethods);
+    $.extend(ctor.prototype, lifeCycle, instanceMethods);
 
     return ctor;
 });

@@ -9,12 +9,12 @@ define(function( require ) {
         ko = require('knockout'),
         system = require('durandal/system'),
         DataSource = require('services/ds'),
-        ctor, lifecyle;
+        ctor, lifeCycle;
 
     ctor = function() {
     };
 
-    lifecyle = {
+    lifeCycle = {
         canActivate: function canActivate ( entityName, related, relatedId, params ) {
             var oDataURI = global.config.oDataURI();
             var context = global.ctx[oDataURI.id];
@@ -58,7 +58,7 @@ define(function( require ) {
         }
     };
 
-    $.extend(true, ctor.prototype, lifecyle);
+    $.extend(true, ctor.prototype, lifeCycle);
 
     return ctor;
 

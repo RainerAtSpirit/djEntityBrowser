@@ -8,7 +8,7 @@ define(function( require ) {
     var widget = require('plugins/widget'),
         ko = require('knockout'),
         $ = require('jquery'),
-        Filter, FilterGroup, ctor, lifecyle, instanceMethods;
+        Filter, FilterGroup, ctor, lifeCycle, instanceMethods;
 
     // Filter constructor function
     Filter = function( parent ) {
@@ -54,7 +54,6 @@ define(function( require ) {
     ctor = function() {
         this.lookups = {
             logic: ['and', 'or'],
-            // SP3Data operation mopping
             opmap: [
                 { name: 'equals', value: 'eq' },
                 { name: 'not equal to', value: 'neq' },
@@ -68,7 +67,7 @@ define(function( require ) {
         };
     };
 
-    lifecyle = {
+    lifeCycle = {
         activate: function( settings ) {
             this._settings = settings;
             this.init();
@@ -117,7 +116,7 @@ define(function( require ) {
         }
     };
 
-    $.extend(ctor.prototype, lifecyle, instanceMethods);
+    $.extend(ctor.prototype, lifeCycle, instanceMethods);
 
     return ctor;
 

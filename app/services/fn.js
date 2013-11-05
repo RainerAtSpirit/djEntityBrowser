@@ -27,14 +27,15 @@ define(function( require ) {
     }
 
     function getValue ( ds, column, item ) {
-        //todo: 'this' smells
-        var cell = item || this;
-        var ctx = global.ctx[global.config.oDataURI().id];
+        var cell = item,
+        ctx = global.ctx[global.config.oDataURI().id],
+        value, properties;
+
         if ( !ctx ) {
             return false;
         }
-        var value = cell[column.name] || '';
-        var properties = column.properties;
+        value = cell[column.name] || '';
+        properties = column.properties;
 
         // Todo : dataTypeMap to default format, overwritable by config
         if ( properties && properties.dataType && properties.dataType.name === 'Date' ) {
