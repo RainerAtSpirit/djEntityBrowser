@@ -8,17 +8,11 @@
             'durandal': '../lib/durandal/js',
             'plugins': '../lib/durandal/js/plugins',
             'transitions': '../lib/durandal/js/transitions',
-            'moment': '../lib/moment/moment',
-            'stampit': '../lib/stampit/stampit'
-        },
-        shim: {
-            'bootstrap': {
-                deps: ['jquery'],
-                exports: 'jQuery'
-            }
+            'moment': '../lib/moment/moment'
         }
     });
 
+    /* core libs are loaded via script tags. Make requirejs aware of them by defining them here*/
     define('jquery', function() {
         return jQuery;
     });
@@ -29,7 +23,6 @@
     define(function( require ) {
 
         var viewLocator = require('durandal/viewLocator'),
-            config = require('config'),
             app = require('durandal/app'),
             system = require('durandal/system');
 
@@ -37,7 +30,7 @@
         system.debug(true);
         //>>excludeEnd("build");
 
-        app.title = 'DJ OData Entity browser';
+        app.title = 'dj OData API explorer';
 
         app.configurePlugins({
             router: true,

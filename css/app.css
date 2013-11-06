@@ -1,13 +1,4 @@
-﻿/* ---------------- widget styles ------------------------*/
-.widgetAttachments ul.unstyled li{
-    padding: 1px;
-}
-
-.widgetAttachments #plupload{
-    margin-bottom: 16px;
-}
-
-
+﻿
 /* ---------------- item form styles -------------------- */
 
 .draggable, .sortable {
@@ -216,6 +207,16 @@ table.footer > tbody > tr > td.pageSize
 }*/
 
 /* ---------------- Todo: check host  styles -------------------- */
+
+
+.select select{
+    margin-top: 6px;
+    margin-bottom: 0;
+}
+
+.call-to-action{
+    margin: 30px 50px;
+}
 
 .page-host {
     position: relative;

@@ -1,22 +1,18 @@
 # djEntityBrowser
->  **2013/09/04**: Work in progress. Use on your own risk
+>  **2013/11/06**: Work in progress. Use at your own risk
 
 What happens if you start mixing [Durandal] a client side SPA framework with [JayData] a unified
 data access library for JavaScript?
 
-##Great things `:)`
+##Let's find out
 
-### What is it?
+###Live version available at [http://rainerat.spirit.de/djEntityBrowser](http://rainerat.spirit.de/djEntityBrowser)
 
-OData Entity browser that supports exploring local or remote OData services.
+##Futher information:
 
-### Basic Usage
-
-... todo
-
-### Advanced Usage
-
-... todo
++ OData [http://www.odata.org](http://www.odata.org)
++ JayData [http://www.jaydata.org](http://www.jaydata.org)
++ Durandal [http://durandaljs.com](http://durandaljs.com)
 
 
 [Spirit]:http://www.spirit.de

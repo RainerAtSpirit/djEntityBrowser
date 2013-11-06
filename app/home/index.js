@@ -5,6 +5,6 @@ define(function () {
     'use strict';
 
     return {
-        title: 'DJ OData Entity Browser'
+        title: 'dj OData API Explorer'
     };
 });

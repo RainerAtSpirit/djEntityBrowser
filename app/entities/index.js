@@ -25,19 +25,19 @@ define(function( require ) {
     lifeCycle = {
 
         // Passing in ?reload=true when switching between services
-        activate: function(path, params) {
+        activate: function( path, params ) {
 
             if ( arguments[0] === null ) {
                 // Navigate to default svcId
                 childRouter.navigate('entities/' + global.config.oDataURI().id);
             }
 
-            if (runOnce || (params && params.reload) ){
+            if ( runOnce || (params && params.reload) ) {
                 runOnce = false;
                 this.init();
-
-                return this.createEntityMap();
             }
+
+            return this.createEntityMap();
         }
     };
 
