@@ -1,5 +1,7 @@
 ﻿/**
  * Copyright 2011-2013 (C) Spirit-EDV-Beratung AG. All rights reserved.
+ * Available via the MIT license.
+ * see: https://github.com/RainerAtSpirit/djODataAPIExplorer for details.
  * Based on algorithm by Ryan Niemeyer http://jsfiddle.net/rniemeyer/UkGTF/
  */
 define(function( require ) {

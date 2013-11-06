@@ -1,4 +1,9 @@
-﻿/*globals, ko, jQuery, requirejs*/
+﻿/**
+ * Copyright 2011-2013 (C) Spirit-EDV-Beratung AG. All rights reserved.
+ * Available via the MIT license.
+ * see: https://github.com/RainerAtSpirit/djODataAPIExplorer for details.
+ */
+/*globals, ko, jQuery, requirejs*/
 (function() {
     'use strict';
 
