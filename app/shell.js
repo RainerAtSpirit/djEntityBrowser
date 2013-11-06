@@ -5,16 +5,25 @@ define(function( require ) {
     'use strict';
 
     var router = require('plugins/router'),
-        global = require('global');
+        global = require('global'),
+        oDataURI = global.config.oDataURI;
+
+    // Redirecting from /entities to current /entities/svcId
+    router.guardRoute = function( routeInfo, params, instance ) {
+        if ( params.fragment === 'entities' ) {
+            return 'entities/' + oDataURI().id;
+        }
+        return true;
+    };
 
     // on service selection go to entity view
     global.config.oDataURI.subscribe(function( value ) {
-        router.navigate('entities/' + value.id +  '?reload=true');
+        router.navigate('entities/' + value.id + '?reload=true');
     });
 
     return {
         router: router,
-        oDataURI: global.config.oDataURI,
+        oDataURI: oDataURI,
         oDataUris: global.config.oDataUris,
         activate: function() {
             return router.map([
