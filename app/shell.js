@@ -18,7 +18,7 @@ define(function( require ) {
 
     // on service selection go to entity view
     global.config.oDataURI.subscribe(function( value ) {
-        router.navigate('entities/' + value.id + '?reload=true');
+        global.trigger('svcChange', value);
     });
 
     return {

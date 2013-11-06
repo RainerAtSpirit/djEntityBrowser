@@ -6,6 +6,7 @@ define(function( require ) {
 
     var config = require('config'),
         ko = require('knockout'),
+        Events = require('durandal/events'),
         oDataUris = ko.observable(config.oDataUris),
         oDataURI = ko.observable(config.oDataUris[0]),
         enableJsonpCallback = ko.observable(false),
@@ -19,6 +20,9 @@ define(function( require ) {
                 enableJsonpCallback: enableJsonpCallback
             }
         };
+
+        // adding events
+        Events.includeIn(global);
 
     // to ease debugging global is expose as "djOData" when in development mode
     //>>excludeStart("build", true);

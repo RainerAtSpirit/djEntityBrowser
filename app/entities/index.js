@@ -8,14 +8,22 @@ define(function( require ) {
         ko = require('knockout'),
         $ = require('jquery'),
         router = require('plugins/router'),
+        system = require('durandal/system'),
+        oDataURI = global.config.oDataURI,
+        oDataUris = global.config.oDataUris,
         childRouter = router.createChildRouter()
             .makeRelative({
                 moduleId: 'entities',
                 route: 'entities'
             }),
-        system = require('durandal/system'),
         runOnce = true,
         ctor, lifeCycle, instanceMethods;
+
+    global.on('svcChange', function( val ) {
+        runOnce = true;
+        router.navigate('entities/' + val.id);
+        system.log('svcChanged', val);
+    });
 
     ctor = function() {
         this.router = childRouter;
@@ -24,20 +32,38 @@ define(function( require ) {
 
     lifeCycle = {
 
-        // Passing in ?reload=true when switching between services
-        activate: function( path, params ) {
+        activate: function( path ) {
 
-            if ( arguments[0] === null ) {
-                // Navigate to default svcId
-                childRouter.navigate('entities/' + global.config.oDataURI().id);
-            }
+            if ( runOnce ) {
+                var pathSvcId = path ? path.split('/')[1] : null;
 
-            if ( runOnce || (params && params.reload) ) {
-                runOnce = false;
+                // Deep linking support. Check if we got a svcId via Url
+                if ( pathSvcId ) {
+                    var obj = $.grep(oDataUris(), function( obj ) {
+                        return obj.id === pathSvcId;
+                    });
+
+                    // check if we have a hit and the hit is not the actual svc
+                    if (obj.length === 1 && obj[0] !== oDataURI() ) {
+                        oDataURI(obj[0]);
+                    }
+                }
                 this.init();
             }
 
+            runOnce = false;
+
             return this.createEntityMap();
+        },
+
+        canDeactivate: function() {
+            system.log('canDeactivate', arguments);
+            return true;
+        },
+
+        deactivate: function() {
+            system.log('deactivate', arguments);
+            return true;
         }
     };
 
@@ -60,23 +86,22 @@ define(function( require ) {
         },
         createEntityMap: function() {
             var self = this,
-                oDataURI = global.config.oDataURI(),
-                svcId = oDataURI.id;
+                svcId = oDataURI().id;
 
             // Enable JSONP if service doesn't support CORS
-            OData.defaultHttpClient.enableJsonpCallback = !oDataURI.cors;
+            OData.defaultHttpClient.enableJsonpCallback = !oDataURI().cors;
 
-            if ( global.ctx[oDataURI.id] ) {
-                this.entities(global.entityMaps[oDataURI.id]);
+            if ( global.ctx[svcId] ) {
+                this.entities(global.entityMaps[svcId]);
                 return;
             }
 
-            return $data.initService(oDataURI.url)
+            return $data.initService(oDataURI().url)
                 .then(function( context ) {
                     var entityMap = [];
-                    global.ctx[oDataURI.id] = context;
+                    global.ctx[svcId] = context;
 
-                    global.ctx[oDataURI.id].forEachEntitySet(function( entity ) {
+                    global.ctx[svcId].forEachEntitySet(function( entity ) {
                         entityMap.push({
                             hash: '#entities/' + svcId + '/browse/' + encodeURIComponent(entity.name),
                             title: entity.name,
@@ -87,7 +112,7 @@ define(function( require ) {
                         });
                     });
 
-                    global.entityMaps[oDataURI.id] = entityMap;
+                    global.entityMaps[svcId] = entityMap;
                     self.entities(entityMap);
                 });
         }
