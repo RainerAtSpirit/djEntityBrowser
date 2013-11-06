@@ -6,7 +6,7 @@ data access library for JavaScript?
 
 ##Let's find out
 
-###Live version available at [http://rainerat.spirit.de/djEntityBrowser](http://rainerat.spirit.de/djODataAPIExplorer)
+###Live version available at [http://rainerat.spirit.de/djODataAPIExplorer](http://rainerat.spirit.de/djODataAPIExplorer)
 
 ##Futher information:
 
