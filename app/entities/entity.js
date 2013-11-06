@@ -12,6 +12,7 @@ define(function( require ) {
         ctor, lifeCycle;
 
     ctor = function() {
+        this.isFiltered = ko.observable(false);
     };
 
     lifeCycle = {
@@ -34,14 +35,6 @@ define(function( require ) {
                 take: 10
             });
 
-            /*this.ds = dsFactory({
-             ctx: context,
-             entityName: entityName,
-             options: {
-             take: 10
-             }
-             });*/
-
             global.TEST = global.TEST || {};
             global.TEST[entityName] = this.ds;
 
@@ -49,6 +42,7 @@ define(function( require ) {
             //Todo Filter expression as binary search tree
             if ( related && relatedId ) {
 
+                this.isFiltered(true);
                 return this.ds.filter({ field: related, operator: "eq", value: relatedId });
                 //return this.ds.query(expression, options);
             }

@@ -1,4 +1,5 @@
 ﻿    <div data-bind="widget: {kind:'grid', ds:$data.ds, headerProperty:'name'}">
         <!-- Overwriting grid/view.html "header" for demo purposes -->
-        <h3 data-part="header">Entity: <span data-bind="text: ds.ItemName"></span></h3>
+        <h3 data-part="header">Entity <i class="icon icon-filter" data-bind="visible: $parent.isFiltered()"></i> :
+            <span data-bind="text: ds.ItemName"></span></h3>
     </div>

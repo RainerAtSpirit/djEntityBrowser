@@ -82,7 +82,7 @@ define(function( require ) {
                             title: entity.name,
                             isActive: ko.computed(function() {
                                 var i = router.activeInstruction();
-                                return i && ko.utils.arrayIndexOf(i.params, '/browse/' + entity.name) !== -1;
+                                return i && ko.utils.arrayIndexOf(i.params, '/' + svcId + '/browse/' + entity.name) !== -1;
                             })
                         });
                     });
