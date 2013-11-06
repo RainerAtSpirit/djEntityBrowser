@@ -208,6 +208,14 @@ table.footer > tbody > tr > td.pageSize
 
 /* ---------------- Todo: check host  styles -------------------- */
 
+.forkme {
+    position: absolute;
+    top: 0;
+    right: 0;
+    border: 0;
+    width: 149px;
+    height: 149px;
+}
 
 .select select{
     margin-top: 6px;
