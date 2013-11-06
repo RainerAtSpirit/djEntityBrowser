@@ -1,7 +1,7 @@
 # djEntityBrowser
 >  **2013/11/06**: Work in progress. Use at your own risk
 
-What happens if you start mixing [Durandal] a client side SPA framework with [JayData] a unified
+What happens if you combine [Durandal] a client side SPA framework with [JayData] a unified
 data access library for JavaScript?
 
 ##Let's find out
