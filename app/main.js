@@ -3,7 +3,7 @@
  * Available via the MIT license.
  * see: https://github.com/RainerAtSpirit/djODataAPIExplorer for details.
  */
-/*globals, ko, jQuery, requirejs*/
+/*globals, ko, jQuery, moment, requirejs*/
 (function() {
     'use strict';
 
@@ -24,6 +24,9 @@
     define('knockout', function() {
         return ko;
     });
+    define('moment', function() {
+           return moment;
+       });
 
     define(function( require ) {
 
