@@ -67,6 +67,8 @@ define(function( require ) {
             else {
                 system.log('Unknown filter, expand ctor.prototype.filter');
             }
+            this.reset();
+            return this.fetch();
         },
         reset: function() {
             this.page(1);
@@ -75,7 +77,7 @@ define(function( require ) {
         fetch: function() {
             var self = this;
             this.isFetching(true);
-            this.query().then(function() {
+            return this.query().then(function() {
                 self.isFetching(false);
             });
         },
@@ -237,9 +239,9 @@ define(function( require ) {
                 });
             });
 
-            // updating _sort|_filter|_take resets ds ->
+            // updating _sort|take resets ds ->
             // todo: combine ds default options with changed value
-            $.each(['_sort', '_filter', 'take'], function( idx, prop ) {
+            $.each(['_sort', 'take'], function( idx, prop ) {
                 self[prop].subscribe(function( value ) {
                     system.log('ds:reset:', value);
                     self.reset();
