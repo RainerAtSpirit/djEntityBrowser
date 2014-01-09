@@ -25,7 +25,7 @@ define(function( require ) {
             id: 'nwODataOrgV4',
             type: 'remote',
             name: 'Northwind V4 (odata.org)',
-            url: 'http://services.odata.org/V3/Northwind/Northwind.svc',
+            url: 'http://services.odata.org/V4/Northwind/Northwind.svc',
             cors: false
         }
     ];
