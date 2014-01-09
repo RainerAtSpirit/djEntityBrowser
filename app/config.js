@@ -15,10 +15,17 @@ define(function( require ) {
             cors: true
         },
         {
-            id: 'nwODataOrg',
+            id: 'nwODataOrgV3',
             type: 'remote',
-            name: 'Northwind (odata.org)',
-            url: 'http://services.odata.org/Northwind/Northwind.svc',
+            name: 'Northwind V3 (odata.org)',
+            url: 'http://services.odata.org/V3/Northwind/Northwind.svc',
+            cors: false
+        },
+        {
+            id: 'nwODataOrgV4',
+            type: 'remote',
+            name: 'Northwind V4 (odata.org)',
+            url: 'http://services.odata.org/V3/Northwind/Northwind.svc',
             cors: false
         }
     ];
